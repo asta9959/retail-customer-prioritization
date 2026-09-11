@@ -11,7 +11,7 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 import plotly.express as px
-
+from pathlib import Path
 
 # ============================================================
 # PAGE CONFIGURATION
@@ -68,8 +68,11 @@ SEGMENT_ACTIONS = {
 # ============================================================
 
 @st.cache_data
+@st.cache_data
 def load_data():
-    df = pd.read_csv("../outputs/customer_segments.csv")
+    base_dir = Path(__file__).resolve().parent.parent
+    data_path = base_dir / "outputs" / "customer_segments.csv"
+    df = pd.read_csv(data_path)
     return df
 
 
